@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5acfc91ca06fe632a721b2656ae142b, type: 3}
   m_Name: StrafingEnemy
   m_EditorClassIdentifier: 
-  EnemyName: 
-  MaxHealth: 0
-  CurrentHealth: 0
-  MovementSpeed: 0
-  AttackSpeed: 0
-  AttackDamage: 0
+  EnemyName: StrafingEnemy
+  MaxHealth: 50
+  CurrentHealth: 50
+  MovementSpeed: 10
+  AttackSpeed: 5
+  AttackDamage: 5
