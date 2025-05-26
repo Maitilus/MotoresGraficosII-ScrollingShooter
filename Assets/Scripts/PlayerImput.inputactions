@@ -20,7 +20,7 @@
                     "id": "c086a43f-43bf-48ce-a1a4-9adfc4433d4d",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.1)",
                     "initialStateCheck": false
                 }
             ],

@@ -1,26 +1,11 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class StrafingEnemyBehaviour : MonoBehaviour, IRecieveDamage
+public class StrafingEnemyBehaviour : AbstractEnemies, IRecieveDamage
 {
-    [SerializeField] private ScriptableEnemies EnemyData;
-
-    private string EnemyName;
-    private float CurrentHealth;
-    private float MaxHealth;
-    private float MovementSpeed;
-    private float AttackDamage;
-    private float AttackSpeed;
-
-
-    private void Start()
+    protected override void Start()
     {
-        EnemyName = EnemyData.GSEnemyName;
-        CurrentHealth = EnemyData.GSMaxHealth;
-        MaxHealth = EnemyData.GSMaxHealth;
-        MovementSpeed = EnemyData.GSMovementSpeed;
-        AttackDamage = EnemyData.GSAttackDamage;
-        AttackSpeed = EnemyData.GSAttackSpeed;
+        base.Start();
     }
 
     public void GetDamaged(float DamageRecieved)

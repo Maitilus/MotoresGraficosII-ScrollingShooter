@@ -1,6 +1,7 @@
 using System.Data.Common;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ProjectileBehaviour : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ProjectileBehaviour : MonoBehaviour
 
     [SerializeField] private float Damage;
     [SerializeField] private float Speed;
+    [SerializeField] private float Lifetime;
     private Vector2 MoveDirection;
     private Rigidbody rb;
 
@@ -16,6 +18,17 @@ public class ProjectileBehaviour : MonoBehaviour
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        //Proyectile Lifetime
+        Lifetime -= Time.deltaTime;
+
+        if (Lifetime <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -32,10 +45,6 @@ public class ProjectileBehaviour : MonoBehaviour
             //Apply the Damage
             collision.gameObject.GetComponent<IRecieveDamage>()?.GetDamaged(Damage);
 
-            Destroy(gameObject);
-        }
-        else if (!collision.gameObject.CompareTag("Player"))
-        {
             Destroy(gameObject);
         }
     }
