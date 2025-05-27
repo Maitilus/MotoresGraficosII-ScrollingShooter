@@ -11,9 +11,14 @@ public abstract class AbstractEnemies : MonoBehaviour
     protected float AttackDamage;
     protected float AttackSpeed;
 
+    protected Rigidbody rb;
+
 
     protected virtual void Start()
-    {  
+    {
+        //get Rigidbody
+        rb = GetComponent<Rigidbody>();
+
         //Set ScriptableObject
         EnemyName = EnemyData.GSEnemyName;
         CurrentHealth = EnemyData.GSMaxHealth;

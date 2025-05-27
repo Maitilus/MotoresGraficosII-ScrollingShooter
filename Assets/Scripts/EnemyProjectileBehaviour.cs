@@ -3,14 +3,12 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class ProjectileBehaviour : MonoBehaviour
+public class EnemyProjectileBehaviour : MonoBehaviour
 {
     #region Variables
 
-    [SerializeField] private float DefaultDamage;
-    [SerializeField] public float Damage;
-    [SerializeField] private float DefaultSpeed;
-    [SerializeField] public float Speed;
+    [SerializeField] private float Damage;
+    [SerializeField] private float Speed;
     [SerializeField] private float Lifetime;
     private Vector2 MoveDirection;
     private Rigidbody rb;
@@ -20,8 +18,6 @@ public class ProjectileBehaviour : MonoBehaviour
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        Damage = DefaultDamage;
-        Speed = DefaultSpeed;
     }
 
     private void Update()
@@ -43,8 +39,8 @@ public class ProjectileBehaviour : MonoBehaviour
     //Detect Collision
     private void OnCollisionEnter(Collision collision)
     {
-        //Check if Collision is an enemy
-        if (collision.gameObject.CompareTag("Enemy"))
+        //Check if Collision is the player
+        if (collision.gameObject.CompareTag("Player"))
         {
             //Apply the Damage
             collision.gameObject.GetComponent<IRecieveDamage>()?.GetDamaged(Damage);

@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IRecieveDamage
 {
 
     #region Variables
@@ -12,9 +12,11 @@ public class PlayerController : MonoBehaviour
     [Header("Stats")]
 
     [SerializeField] private float MaxHealth;
+    public float GMaxHealth
+        { get { return MaxHealth; } }
     public float CurrentHealth;
     [SerializeField] private float MovementSpeed;
-    [SerializeField] private float RPS;
+    [SerializeField] public float RPS;
     private bool CanFire;
     [SerializeField] private bool IsFireing = false;
     private Vector2 MoveDirection;
@@ -78,13 +80,23 @@ public class PlayerController : MonoBehaviour
         //Rotate player to aim
         transform.rotation = Quaternion.LookRotation(Crosshair.position - transform.position);
     }
+    
+    public void GetDamaged(float DamageRecieved)
+    {
+        CurrentHealth -= DamageRecieved;
+
+        if (CurrentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     #region Enable/Disable
 
-        private void OnEnable()
-            {
-           Shoot.action.started += StartFireing;
-        }
+    private void OnEnable()
+    {
+        Shoot.action.started += StartFireing;
+    }
 
         private void Oisable()
         {
